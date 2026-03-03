@@ -1,0 +1,50 @@
+# .NET / C#
+[Bb]in/
+[Oo]bj/
+out/
+.vscode/
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+packages/
+*.nupkg
+
+# C++ / Visual Studio
+ipch/
+*.aps
+*.intermediate.manifest
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.exe
+*.sdf
+*.opensdf
+*.suo
+*.db
+*.opendb
+Debug/
+Release/
+x64/
+x86/
+build/
+*.o
+*.obj
+*.dll
+*.exe
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.history/
+*.log
+*.tmp
+
+# Project specific
+firmware/build/
+firmware/.pio/
