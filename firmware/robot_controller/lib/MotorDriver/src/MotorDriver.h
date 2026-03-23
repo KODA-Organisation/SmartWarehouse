@@ -12,10 +12,7 @@ class Motor{
         // Declare funcs
         void Init();
         void Move();
+        void Stop();
 }; 
-
-// INF - INPUT FIRST
-// INS - INPUT SECOND
-void MoveForward(Motor& M1, Motor& M2);
 
 #endif

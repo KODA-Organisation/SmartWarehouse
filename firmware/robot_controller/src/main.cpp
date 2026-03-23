@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <UltraSonic.h>
 #include <MotorDriver.h>
+#include <RobotUtils.h>
 
 const int TRIGGER_PIN = 42;
 const int ECHO_PIN = 41;
@@ -10,24 +11,42 @@ const int IN3 = 6;
 const int IN4 = 7;
 
 // Creating Motors
-Motor Left(4,5);
-Motor Right(6,7);
+// Motor Left(IN1, IN2);
+// Motor Right(IN3, IN4);
+
+// // Creating UltraSonic
+// UltraSonic US1(TRIGGER_PIN, ECHO_PIN);
+
+// Creating a Robot object
+Robot ROBOT(IN1, IN2, IN3, IN4, TRIGGER_PIN, ECHO_PIN);
+
+// Robot ROBOT(Left, Right, US1);
 
 bool moving = false;
-
+bool obstacle = false;
 void setup() {
     Serial.begin(115200);
-    pinMode(TRIGGER_PIN, OUTPUT);
-    pinMode(ECHO_PIN, INPUT);
-    Left.Init();
-    Right.Init();
+    ROBOT.Assemble();
 }
 
 void loop() {
-    if(!moving){
-        MoveForward(Left, Right);
-        moving = true;
+    long dist = GetDistance(ROBOT.US);
+
+    if(dist < 30){
+        obstacle = true;
+    }else{
+        obstacle = false;
     }
-    Serial.println(GetDistance(TRIGGER_PIN, ECHO_PIN));
-    delay(60);
+
+    if(!moving && !obstacle){
+        ROBOT.MoveForward();
+        moving = true;
+    }else if(moving && obstacle){
+        ROBOT.FullStop();
+        moving = false;
+    }
+
+    Serial.println(dist);
+    
+    delay(600);
 }

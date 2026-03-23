@@ -18,8 +18,7 @@ void Motor::Move(){
     digitalWrite(INS, LOW);
 }
 
-// Move - makes HIGH to diff motor
-void MoveForward(Motor& M1, Motor& M2){
-    M1.Move();
-    M2.Move();
+void Motor::Stop(){
+    digitalWrite(INF, LOW);
+    digitalWrite(INS, LOW);
 }
