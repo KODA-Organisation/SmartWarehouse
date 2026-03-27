@@ -2,9 +2,12 @@
 #define MOTORDRIVER_H
 
 class Motor{
+    uint8_t INF;
+    uint8_t INS;
     public:
-        int INF;
-        int INS;
+        // Getters        
+        uint8_t GetFirstPin();
+        uint8_t GetSecondPin();
 
         // Declare constructor
         Motor(int first, int second);
@@ -16,3 +19,5 @@ class Motor{
 }; 
 
 #endif
+
+// https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html

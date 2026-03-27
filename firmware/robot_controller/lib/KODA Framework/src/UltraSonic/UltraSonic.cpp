@@ -1,11 +1,18 @@
-#include <UltraSonic.h>
+#include <UltraSonic/UltraSonic.h>
 #include <Arduino.h>
 
 constexpr float SOUND_SPEED_CM = 0.0343f;
 
-UltraSonic::UltraSonic(int TR_PIN, int ECH_PIN){
+UltraSonic::UltraSonic(uint8_t TR_PIN, uint8_t ECH_PIN){
     TRIGGER_PIN = TR_PIN;
     ECHO_PIN = ECH_PIN;
+}
+
+uint8_t UltraSonic::GetTriggerPin(){
+    return TRIGGER_PIN;
+}
+uint8_t UltraSonic::GetEchoPin(){
+    return ECHO_PIN;
 }
 
 void UltraSonic::Init(){
@@ -26,10 +33,10 @@ long microsecondsToCentimeters(long microseconds){
     return microseconds / 29 / 2;
 }
 
-long GetDistance(UltraSonic& US){    
+long UltraSonic::GetDistance(){    
     // Triggering
-    US.SendTrigg();
-    long duration = pulseIn(US.ECHO_PIN, HIGH);
+    SendTrigg();
+    long duration = pulseIn(ECHO_PIN, HIGH);
     // output
     return microsecondsToCentimeters(duration);
 }

@@ -1,26 +1,26 @@
 #include <Arduino.h>
-#include <UltraSonic.h>
-#include <MotorDriver.h>
-#include <RobotUtils.h>
+#include <Utils/RobotUtils.h>
 
-const int TRIGGER_PIN = 42;
-const int ECHO_PIN = 41;
-const int IN1 = 4;
-const int IN2 = 5;
-const int IN3 = 6;
-const int IN4 = 7;
+// constexpr - must be init at compile time
+// const - in compile or runtime
 
-// Creating Motors
-// Motor Left(IN1, IN2);
-// Motor Right(IN3, IN4);
+constexpr uint8_t TRIGGER_PIN = 42;
+constexpr uint8_t ECHO_PIN = 41;
+constexpr uint8_t IN1 = 4;
+constexpr uint8_t IN2 = 5;
+constexpr uint8_t IN3 = 6;
+constexpr uint8_t IN4 = 7;
 
-// // Creating UltraSonic
-// UltraSonic US1(TRIGGER_PIN, ECHO_PIN);
+//Creating Motors
+Motor Left(IN1, IN2);
+Motor Right(IN3, IN4);
+
+// Creating UltraSonic
+UltraSonic US1(TRIGGER_PIN, ECHO_PIN);
 
 // Creating a Robot object
-Robot ROBOT(IN1, IN2, IN3, IN4, TRIGGER_PIN, ECHO_PIN);
-
-// Robot ROBOT(Left, Right, US1);
+Robot ROBOT(Left, Right, US1);
+// Robot ROBOT(IN1, IN2, IN3, IN4, TRIGGER_PIN, ECHO_PIN);
 
 bool moving = false;
 bool obstacle = false;
@@ -30,7 +30,9 @@ void setup() {
 }
 
 void loop() {
-    long dist = GetDistance(ROBOT.US);
+    // rm delay() 
+    // make millis here
+    long dist = ROBOT.CheckDistance();
 
     if(dist < 30){
         obstacle = true;
