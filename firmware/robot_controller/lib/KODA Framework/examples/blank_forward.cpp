@@ -1,9 +1,6 @@
 #include <Arduino.h>
 #include <Utils/RobotUtils.h>
-#include <Utils/Timer.h>
 
-// constexpr - must be init at compile time
-// const - in compile or runtime
 constexpr uint8_t TRIGGER_PIN = 42;
 constexpr uint8_t ECHO_PIN = 41;
 constexpr uint8_t IN1 = 4;
@@ -27,8 +24,6 @@ void setup() {
 }
 
 void loop() {
-    // rm delay() 
-    // make millis here
     long dist = ROBOT.CheckDistance();
 
     if(dist < 30){

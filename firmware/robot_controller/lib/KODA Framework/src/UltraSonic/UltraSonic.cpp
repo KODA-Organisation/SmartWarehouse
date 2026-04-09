@@ -21,7 +21,6 @@ void UltraSonic::Init(){
 }
 
 void UltraSonic::SendTrigg(){
-    // Trigg pulse
     digitalWrite(TRIGGER_PIN, LOW);
     delayMicroseconds(2);
     digitalWrite(TRIGGER_PIN, HIGH);
@@ -34,9 +33,7 @@ long microsecondsToCentimeters(long microseconds){
 }
 
 long UltraSonic::GetDistance(){    
-    // Triggering
-    SendTrigg();
+    UltraSonic::SendTrigg();
     long duration = pulseIn(ECHO_PIN, HIGH);
-    // output
     return microsecondsToCentimeters(duration);
 }

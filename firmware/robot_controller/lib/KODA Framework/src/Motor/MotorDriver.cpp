@@ -11,8 +11,6 @@ void Motor::Init(){
     pinMode(INS, OUTPUT);
 }
 
-// Main thing to make first - High, second - LOW
-// To make it "circulate"
 void Motor::Move(){
     digitalWrite(INF, HIGH);
     digitalWrite(INS, LOW);
