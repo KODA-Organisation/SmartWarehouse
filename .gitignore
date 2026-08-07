@@ -11,6 +11,10 @@ out/
 packages/
 *.nupkg
 
+# Server side
+server/SmartWarehouse/appsettings.json
+server/SmartWarehouse.Database/Migrations/
+
 # C++ / Visual Studio
 ipch/
 *.aps
@@ -48,3 +52,16 @@ desktop.ini
 # Project specific
 firmware/build/
 firmware/.pio/
+
+# Хуйня ненужная
+firmware/robot_controller/.pio
+firmware/robot_controller/.vscode/.browse.c_cpp.db*
+firmware/robot_controller/.vscode/c_cpp_properties.json
+firmware/robot_controller/.vscode/launch.json
+firmware/robot_controller/.vscode/ipch
+
+# Obsidian
+docs/KODA/.obsidian
+
+# Some configs (No hands, no candy)
+mqtt-conf/
